@@ -10,7 +10,7 @@ public class Key : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<Player>().hasKey = true;
-            // Update the UI
+            UI.instance.ToggleKeyIcon(true);
             Destroy(gameObject);
         }
     }

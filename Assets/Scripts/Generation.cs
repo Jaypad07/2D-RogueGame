@@ -34,10 +34,12 @@ public class Generation : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    public void OnPlayerMove()
     {
-        Random.InitState(346);
-        Generate();
+        Vector2 playerPos = FindObjectOfType<Player>().transform.position;
+        Vector2 roomPos = new Vector2(((int)playerPos.x + 6) / 12, ((int)playerPos.y + 6) / 12);
+
+        UI.instance.map.texture = MapTextureGenerator.Generate(map, roomPos);
     }
 
     // Called at the start of the game - begins the generation process.
@@ -47,6 +49,8 @@ public class Generation : MonoBehaviour
         CheckRoom(3, 3, 0, Vector2.zero, true);
         InstantiateRooms();
         FindObjectOfType<Player>().transform.position = firstRoomPos * 12;
+
+        UI.instance.map.texture = MapTextureGenerator.Generate(map, firstRoomPos);
     }
 
     // Checks to see if we can place a room here - continues the branch in the general direction.

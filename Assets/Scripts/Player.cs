@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
         {
             transform.position += new Vector3(dir.x, dir.y, 0);
             EnemyManager.instance.OnPlayerMove();
+            Generation.Instance.OnPlayerMove();
         }
     }
     
@@ -102,12 +103,14 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damageToTake)
     {
         curHp -= damageToTake;
+        
+        UI.instance.UpdateHealth(curHp);
 
         StartCoroutine(DamageFlash());
 
         if (curHp <= 0)
         {
-            SceneManager.LoadScene(0);
+            Die();
         }
 
     }
@@ -125,9 +128,7 @@ public class Player : MonoBehaviour
     public void AddCoins(int amount)
     {
         coins += amount;
-        // Update the UI;
-        
-        
+        UI.instance.UpdateCoinText(coins);
     }
 
     public bool AddHealth(int amount)
@@ -135,10 +136,17 @@ public class Player : MonoBehaviour
         if (curHp + amount <= maxHp)
         {
             curHp += amount;
-            // Update the ui
+            UI.instance.UpdateHealth(curHp);
             return true;
         }
 
         return false;
+    }
+
+    public void Die()
+    {
+        curHp = maxHp;
+        coins = 0;
+        SceneManager.LoadScene(0);
     }
 }
