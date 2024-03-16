@@ -2966,11 +2966,11 @@ MonoBehaviour:
   westWall: {fileID: 7856362330596473604}
   insideWidth: 7
   insideHeight: 7
-  enemyPrefab: {fileID: 0}
-  coinPrefab: {fileID: 0}
-  healthPrefab: {fileID: 0}
-  keyPrefab: {fileID: 0}
-  exitDoorPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 337135261448653500, guid: f448ca2760ba7fe4ca4f7bf442fae7ee, type: 3}
+  coinPrefab: {fileID: 3627458739815318800, guid: 1a362406d073db94983edaf12f72e08d, type: 3}
+  healthPrefab: {fileID: 8083984964343946471, guid: 1f88bd51a8780004db870cd1696bbe5a, type: 3}
+  keyPrefab: {fileID: 6757714972616350165, guid: 44ddaf5c949a49f468cfdb88c993c4f4, type: 3}
+  exitDoorPrefab: {fileID: 5149595902493643601, guid: 8dac67a73e651524990543eb9de38c88, type: 3}
 --- !u!1 &3894408593694679836
 GameObject:
   m_ObjectHideFlags: 0

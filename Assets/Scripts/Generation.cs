@@ -19,6 +19,15 @@ public class Generation : MonoBehaviour
     private List<Room> roomObjects = new List<Room>();
 
     public static Generation Instance;
+    
+    // Spawn Chances
+    public float enemySpawnChance;
+    public float coinSpawnChance;
+    public float healthSpawnChance;
+
+    public int maxEnemiesPerRoom;
+    public int maxCoinsPerRoom;
+    public int maxHealthPerRoom;
 
     private void Awake()
     {
@@ -158,5 +167,26 @@ public class Generation : MonoBehaviour
 
     void CalculateKeyAndExit()
     {
+        float maxDist = 0;
+        Room a = null;
+        Room b = null;
+
+        foreach (Room aRoom in roomObjects)
+        {
+            foreach (Room bRoom in roomObjects)
+            {
+                float dist = Vector3.Distance(aRoom.transform.position, bRoom.transform.position);
+
+                if (dist > maxDist)
+                {
+                    a = aRoom;
+                    b = bRoom;
+                    maxDist = dist;
+                }
+            }
+        }
+        
+        a.SpawnPrefab(a.keyPrefab);
+        b.SpawnPrefab(b.exitDoorPrefab);
     }
 }
